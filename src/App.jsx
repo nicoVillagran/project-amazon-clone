@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Card from "./components/Card";
+import data from "./data";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+    <main className="bg-gray-300">
+      <header className="p-3 bg-slate-900 text-white">
+        <a
+          className="relative after:absolute after:left-0 after:-bottom-px after:w-full after:h-px after:bg-orange-400 sm:text-lg"
+          href="/"
+        >
+          amazon
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      </header>
+      <section className="p-2">
+        <h1 className="text-2xl font-semibold text-slate-950">
+          Feactured Products
+        </h1>
+        <br />
+        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {data.products.map((product) => (
+            <Card
+              key={product.slug}
+              name={product.name}
+              price={product.price}
+              image={product.image}
+              slug={product.slug}
+            />
+          ))}
+        </div>
+      </section>
+    </main>
+  );
 }
 
-export default App
+export default App;
