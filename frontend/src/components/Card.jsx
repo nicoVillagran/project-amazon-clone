@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Rating from "./Rating";
 
-const Card = ({ slug, image, name, price }) => {
+const Card = ({ slug, image, name, price, rating, numReviews }) => {
   return (
     <figure
       className="flex sm:flex-col justify-between bg-white rounded-md"
@@ -15,14 +16,18 @@ const Card = ({ slug, image, name, price }) => {
         />
       </Link>
       <figcaption className="flex flex-col justify-center p-5">
-        <Link className="text-xl hover:underline" to={`/product/${slug}`}>
+        <Link
+          className="text-xl text-blue-600 font-medium underline leading-relaxed"
+          to={`/product/${slug}`}
+        >
           <p>{name}</p>
         </Link>
+        <Rating rating={rating} numReviews={numReviews} />
         <p>
           <strong>${price}</strong>
         </p>
         <br />
-        <button className="py-1 px-3 font-medium bg-orange-400 rounded-full">
+        <button className="py-1 px-3 font-medium bg-orange-400 rounded">
           Add to card
         </button>
       </figcaption>
@@ -35,6 +40,8 @@ Card.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  numReviews: PropTypes.number.isRequired,
 };
 
 export default Card;
